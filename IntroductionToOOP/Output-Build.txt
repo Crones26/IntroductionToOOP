@@ -1,0 +1,8 @@
+﻿Build started at 22:10...
+1>------ Build started: Project: Point, Configuration: Debug Win32 ------
+1>main.cpp
+1>C:\Users\Cympak\source\repos\IntroductionToOOP\Point\main.cpp(73,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+1>Point.vcxproj -> C:\Users\Cympak\source\repos\IntroductionToOOP\Debug\Point.exe
+1>Done building project "Point.vcxproj".
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
+========== Build completed at 22:11 and took 00,953 seconds ==========
