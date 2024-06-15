@@ -1,4 +1,4 @@
-#include<iostream>
+п»ї#include<iostream>
 using namespace std;
 using std::cin;
 using std::cout;
@@ -6,9 +6,9 @@ using std::endl;
 
 class Fraction
 {
-    int integer;        // Целая часть
-    int numerator;      // Числитель
-    int denominator;    // Знаменатель
+    int integer;        // Р¦РµР»Р°СЏ С‡Р°СЃС‚СЊ
+    int numerator;      // Р§РёСЃР»РёС‚РµР»СЊ
+    int denominator;    // Р—РЅР°РјРµРЅР°С‚РµР»СЊ
 
 public:
     int get_integer() const
@@ -36,7 +36,7 @@ public:
         if (denominator == 0) denominator = 1;
         this->denominator = denominator;
     }
-    //              Конструкторы
+    //              РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
     Fraction() : integer(0), numerator(0), denominator(1)
     {
         cout << "DefaultConstructor:\t" << this << endl;
@@ -63,7 +63,7 @@ public:
     {
         cout << "Destructor:\t" << this << endl;
     }
-    //               Методы
+    //               РњРµС‚РѕРґС‹
     Fraction& to_improper()
     {
         numerator += integer * denominator;
@@ -90,7 +90,7 @@ public:
         cout << endl;
     }
 
-    //               Операторы
+    //               РћРїРµСЂР°С‚РѕСЂС‹
     Fraction& operator=(const Fraction& other)
     {
         if (this != &other)
@@ -101,7 +101,7 @@ public:
         }
         return *this;
     }
-    // Инкременты
+    // РРЅРєСЂРµРјРµРЅС‚С‹
    Fraction& operator++()
    {
        integer++;
@@ -113,7 +113,7 @@ public:
        integer++;
        return old;
    }
-   // Декременты
+   // Р”РµРєСЂРµРјРµРЅС‚С‹
    Fraction& operator--()
    {
        integer--;
@@ -126,7 +126,7 @@ public:
        return old;
    }
 };
-//              Перегруженные операторы
+//              РџРµСЂРµРіСЂСѓР¶РµРЅРЅС‹Рµ РѕРїРµСЂР°С‚РѕСЂС‹
 Fraction operator*(Fraction left, Fraction right)
 {
     left.to_improper();
