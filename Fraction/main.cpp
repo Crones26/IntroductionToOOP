@@ -1,4 +1,5 @@
-﻿#include<iostream>
+﻿#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
 using namespace std;
 using std::cin;
 using std::cout;
@@ -273,13 +274,40 @@ std::ostream& operator<<(std::ostream& os, const Fraction& obj)
 	else if (obj.get_integer() == 0) os << 0;
 	return os;
 }
-std::istream& operator>>(std::istream& is, Fraction& obj)
+//std::istream& operator>>(std::istream& is, Fraction& obj)
+//{
+//	int integer, numerator, denominator;
+//	is >> integer >> numerator >> denominator;
+//	obj.set_integer(integer);
+//	obj.set_numerator(numerator);
+//	obj.set_denominator(denominator);
+//	return is;
+//}
+istream& operator>>(istream& is, Fraction& obj)
 {
-	int integer, numerator, denominator;
-	is >> integer >> numerator >> denominator;
-	obj.set_integer(integer);
-	obj.set_numerator(numerator);
-	obj.set_denominator(denominator);
+	const int SIZE = 256;
+	char buffer[SIZE] = {};
+	//is >> buffer;
+	is.getline(buffer, SIZE);
+
+	int number[3] = {};
+	int n = 0;
+	const char delimiters[] = " /()";
+	for (char* pch = strtok(buffer, delimiters); pch; pch = strtok(NULL, delimiters)) {
+		number[n++] = atoi(pch);
+	}
+	for (int i = 0; i < n; i++) 
+	{
+		cout << number[i] << "\t";
+	}
+	cout << endl;
+
+	switch (n)
+	{
+	case 1:obj = Fraction(number[0]); break;
+	case 2:obj = Fraction(number[0],number[1]); break;
+	case 3:obj = Fraction(number[0],number[1], number[2]); break;
+	}
 	return is;
 }
 
