@@ -146,6 +146,18 @@ public:
 	{
 		return *this = *this - other;
 	}
+	//				Type-cast operators
+	explicit operator int()
+	{
+		return to_proper().integer;
+		//to_proper();
+		//return integer;
+	}
+	explicit operator double()const
+	{
+		return integer + (double)numerator / denominator;
+	}
+
 	Fraction& operator++()
 	{
 		this->integer++;
@@ -352,7 +364,8 @@ std::istream& operator>>(std::istream& is, Fraction& obj)
 //#define ARITHMETICAL_OPERATORS_CHECK
 //#define IOSTREAM_CHECK
 //#define CONVERSION_FROM_OTHER_TO_CLASS
-#define CONVERSIONS_HOME_WORK
+//#define CONVERSIONS_HOME_WORK
+
 void main()
 {
 	setlocale(LC_ALL, "");
@@ -430,4 +443,14 @@ void main()
 	cout << A << endl;
 #endif // CONVERSIONS_HOME_WORK
 
+	Fraction A(2, 3, 4);
+	A.to_improper();
+	cout << A << endl;
+	
+	int a = int(A);
+	cout << a << endl;
+	cout << A << endl;
+
+	double da = double(A);
+	cout << da << endl;
 }
