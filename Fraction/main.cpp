@@ -5,6 +5,8 @@ using std::cin;
 using std::cout;
 using std::endl;
 
+#define delimiter "\n---------------------------------------\n"
+
 class Fraction;
 Fraction operator*(Fraction left, Fraction right);
 Fraction operator/(const Fraction& left, const Fraction& right);
@@ -51,26 +53,26 @@ public:
 		this->denominator = 1;
 		cout << "Default Constructor:\t" << this << endl;
 	}
-	Fraction(int integer)
+	explicit Fraction(int integer)
 	{
 		this->integer = integer;
 		this->numerator = 0;
 		this->denominator = 1;
-		cout << "1ArgConstructor:\t" << this << endl;
+		cout << "SingleArgumentConstructor:\t" << this << endl;
 	}
 	Fraction(int numerator, int denominator)
 	{
 		this->integer = 0;
 		this->numerator = numerator;
 		set_denominator(denominator);
-		cout << "2ArgConstructor:\t" << this << endl;
+		cout << "TwoArgumentConstructor:\t" << this << endl;
 	}
 	Fraction(int integer, int numerator, int denominator)
 	{
 		this->integer = integer;
 		this->numerator = numerator;
 		set_denominator(denominator);
-		cout << "3ArgConstructor:\t" << this << endl;
+		cout << "ThreeArgumentConstructor:\t" << this << endl;
 	}
 	Fraction(const Fraction& other)
 	{
@@ -78,6 +80,41 @@ public:
 		this->numerator = other.numerator;
 		this->denominator = other.denominator;
 		cout << "CopyConstructor:\t" << this << endl;
+	}
+	/*Fraction(double decimal)
+	{
+		integer = decimal; 
+		double fractional = decimal - integer;
+		denominator = 1;
+		while (fractional - int(fractional) != 0.0 && denominator <= 100000000)
+		{
+			fractional *= 10;
+			denominator *= 10;
+		}
+		numerator = fractional;
+		reduce();
+		cout << "DoubleArgumentConstructor:\t" << this << endl;
+	}*/
+
+	/*Fraction(double decimal)
+	{
+		integer = decimal;
+		double fractional = decimal - integer;
+		const int precision = 100000000;
+		numerator = (fractional * precision);
+		denominator = precision;
+		reduce(); 
+		cout << "DoubleArgumentConstructor:\t" << this << endl;
+	}*/
+
+	Fraction(double decimal)
+	{
+		integer = decimal;
+		decimal -= integer; 
+		denominator = 100000000;
+		numerator = decimal * denominator;
+		reduce();
+		cout << "DoubleArgumentConstructor:\t" << this << endl;
 	}
 	~Fraction()
 	{
@@ -274,7 +311,7 @@ std::ostream& operator<<(std::ostream& os, const Fraction& obj)
 	else if (obj.get_integer() == 0) os << 0;
 	return os;
 }
-//std::istream& operator>>(std::istream& is, Fraction& obj)
+std::istream& operator>>(std::istream& is, Fraction& obj)
 //{
 //	int integer, numerator, denominator;
 //	is >> integer >> numerator >> denominator;
@@ -283,7 +320,6 @@ std::ostream& operator<<(std::ostream& os, const Fraction& obj)
 //	obj.set_denominator(denominator);
 //	return is;
 //}
-istream& operator>>(istream& is, Fraction& obj)
 {
 	const int SIZE = 256;
 	char buffer[SIZE] = {};
@@ -313,7 +349,9 @@ istream& operator>>(istream& is, Fraction& obj)
 
 //#define CONSTRUCTORS_CHECK
 //#define ARITHMETICAL_OPERATORS_CHECK
-
+//#define IOSTREAM_CHECK
+//#define CONVERSION_FROM_OTHER_TO_CLASS
+#define CONVERSIONS_HOME_WORK
 void main()
 {
 	setlocale(LC_ALL, "");
@@ -358,6 +396,8 @@ void main()
 	A.print();
 #endif // ARITHMETICAL_OPERATORS_CHECK
 
+#ifdef IOSTREAM_CHECK
+
 	//cout << (Fraction(1, 3) == Fraction(5, 11)) << endl;
 	//cout << (Fraction(1, 3) != Fraction(5, 11)) << endl;
 	//cout << (Fraction(1, 3) >= Fraction(5, 11)) << endl;
@@ -368,5 +408,25 @@ void main()
 	Fraction A;
 	cout << "Введите числа для вывода на экран: "; cin >> A;
 	cout << A << endl;
+
+#endif // IOSTREAM_CHECK
+
+#ifdef CONVERSION_FROM_OTHER_TO_CLASS
+	Fraction A = (Fraction)5;
+	cout << A << endl;
+	cout << delimiter << endl;
+
+	Fraction B;
+	cout << delimiter << endl;
+	B = Fraction (8);
+	cout << delimiter << endl;
+	cout << B << endl;
+	cout << delimiter << endl;
+#endif // CONVERSION_FROM_OTHER_TO_CLASS
+
+#ifdef CONVERSIONS_HOME_WORK
+	Fraction A = 2.75;
+	cout << A << endl;
+#endif // CONVERSIONS_HOME_WORK
 
 }
