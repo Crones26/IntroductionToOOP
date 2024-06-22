@@ -365,7 +365,6 @@ std::istream& operator>>(std::istream& is, Fraction& obj)
 //#define IOSTREAM_CHECK
 //#define CONVERSION_FROM_OTHER_TO_CLASS
 //#define CONVERSIONS_HOME_WORK
-
 void main()
 {
 	setlocale(LC_ALL, "");
