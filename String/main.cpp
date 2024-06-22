@@ -34,7 +34,10 @@ public:
 	{
 		this->size = strlen(str) + 1;
 		this->str = new char[size] {};
-		for (int i = 0; str[i]; i++)this->str[i] = str[i];
+		for (int i = 0; str[i]; i++)
+		{
+			this->str[i] = str[i];
+		}
 		cout << "Constructor:\t\t" << this << endl;
 	}
 	~String()
