@@ -1,4 +1,4 @@
-#include<iostream>
+ï»¿#include<iostream>
 using namespace std;
 using std::cin;
 using std::cout;
@@ -8,8 +8,8 @@ using std::endl;
 
 class String
 {
-	int	size;  //Ðàçìåð ñòðîêè â áàéòàõ
-	char* str; //Óêàçàòåëü íà ñòðîêó â äèíàìè÷åñêîé ïàìÿòè
+	int	size;  //Ð Ð°Ð·Ð¼ÐµÑ€ ÑÑ‚Ñ€Ð¾ÐºÐ¸ Ð² Ð±Ð°Ð¹Ñ‚Ð°Ñ…
+	char* str; //Ð£ÐºÐ°Ð·Ð°Ñ‚ÐµÐ»ÑŒ Ð½Ð° ÑÑ‚Ñ€Ð¾ÐºÑƒ Ð² Ð´Ð¸Ð½Ð°Ð¼Ð¸Ñ‡ÐµÑÐºÐ¾Ð¹ Ð¿Ð°Ð¼ÑÑ‚Ð¸
 public:
 	int get_size()const
 	{
@@ -23,7 +23,7 @@ public:
 	{
 		return str;
 	}
-	//			Constructors:
+	//				Constructors:
 	explicit String(int size = 80)
 	{
 		this->size = size;
@@ -69,7 +69,7 @@ public:
 		cout << "CopyAssignment:\t\t" << this << endl;
 		return *this;
 	}
-	//				Indexing operators
+	//				Indexing operators:
 	char& operator[](int index)
 	{
 		return str[index];
