@@ -188,14 +188,17 @@ void main()
     String str2 = "World";
 
 	cout << delimiter << endl;
-	String temp = str1 + str2; 
-	String str3;			// Создаем пустой объект str3
-	str3 = std::move(temp); // Перемещаем temp в str3
-	cout << str3 << endl;
+	//String temp = str1 + str2;	//Move constructor
+	//cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+	String temp;
+	temp = str1 + str2;// Move assignment
+	//cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
 	cout << delimiter << endl;
+	////String str3;			// Создаем пустой объект str3
+	//////str3 = std::move(temp); // Перемещаем temp в str3
+	////cout << str3 << endl;
+	////cout << delimiter << endl;
 
 #endif // MOVE_ASSIGNMENT_CHECK
 
-
-	
 }
