@@ -69,12 +69,35 @@ public:
 		cout << "CopyAssignment:\t\t" << this << endl;
 		return *this;
 	}
+	//			Move Constructor:
+	String(String&& other) noexcept // r-value reference
+	{
+		//Shallow copy:
+		this->size = other.size;
+		this->str = other.str;
+		//Reset other:
+		other.size = 0;
+		other.str = nullptr;
+		cout << "MoveConstructor:\t" << this << endl;
+	}
+	//		Assignment operator by moving:
+	String& operator=(String&& other) noexcept
+	{
+		if (this == &other) return *this;
+		delete[] str;
+		this->size = other.size;
+		this->str = other.str;
+		other.size = 0;
+		other.str = nullptr;
+		cout << "MoveAssignment:\t\t" << this << endl;
+		return *this;
+	}
 	//				Indexing operators:
-	char& operator[](int index)
+	const char& operator[](int index) const
 	{
 		return str[index];
 	}
-	const char& operator[](int index) const
+	char& operator[](int index)
 	{
 		return str[index];
 	}
@@ -97,7 +120,7 @@ std::ostream& operator<<(std::ostream& os, const String& obj)
 String operator+(const String& left, const String& right)
 {
 	String buffer(left.get_size() + right.get_size() - 1);
-	buffer.print();
+	//buffer.print();
 	for (int i = 0; i < left.get_size(); i++)
 	{
 		buffer[i] = left[i];
@@ -110,10 +133,14 @@ String operator+(const String& left, const String& right)
 	}
 	return buffer;
 }
-
+//#define CONSTRUCTORS_CHECK
+//#define OPERATOR_PLUS_CHECK
+#define MOVE_ASSIGNMENT_CHECK
 void main()
 {
 	setlocale(LC_ALL, "");
+
+#ifdef CONSTRUCTORS_CHECK
 
 	String str1;
 	str1.print();
@@ -134,9 +161,41 @@ void main()
 	//String str5 = str3 + " " + str4;
 	String str5;
 	str5 = str3 + " " + str4;
-	
+
 	cout << delimiter << endl;
 	cout << str5 << endl;
 	cout << delimiter << endl;
 
+#endif // CONSTRUCTORS_CHECK
+
+#ifdef OPERATOR_PLUS_CHECK
+
+	String str1 = "Hello";
+	String str2 = "World";
+
+	cout << delimiter << endl;
+	String str3 = str1 + str2;
+	cout << str3 << endl;
+	cout << delimiter << endl;
+
+	cout << str1 << endl;
+	cout << str2 << endl;
+
+#endif // OPERATOR_PLUS_CHECK
+
+#ifdef MOVE_ASSIGNMENT_CHECK
+	String str1 = "Hello";
+    String str2 = "World";
+
+	cout << delimiter << endl;
+	String temp = str1 + str2; 
+	String str3;			// Создаем пустой объект str3
+	str3 = std::move(temp); // Перемещаем temp в str3
+	cout << str3 << endl;
+	cout << delimiter << endl;
+
+#endif // MOVE_ASSIGNMENT_CHECK
+
+
+	
 }
