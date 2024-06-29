@@ -44,10 +44,10 @@ public:
 	{
 		//this->size = other.size;
 		//this->str = new char[size] {};
-		for (int i = 0; i < size; i++)
+		/*for (int i = 0; i < size; i++)
 		{
 			this->str[i] = other.str[i];
-		}
+		}*/
 		cout << "CopyConstructor:\t" << this << endl;
 	}
 	//			Move Constructor:
@@ -190,10 +190,9 @@ void main()
 
 	cout << delimiter << endl;
 	//String temp = str1 + str2;	//Move constructor
-	//cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
 	String temp;
-	temp = str1 + str2;// Move assignment
-	//cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+	temp = str1 + str2; // Move assignment
+	temp.print();
 	cout << delimiter << endl;
 	//String str3;				// Создаем пустой объект str3
 	//str3 = std::move(temp);	// Перемещаем temp в str3
