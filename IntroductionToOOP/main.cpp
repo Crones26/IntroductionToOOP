@@ -215,7 +215,6 @@ void main()
 #endif // COMPARISON_OPERATORS_CHECK
 
 	Point A(2, 3);
-
 	cout << A << endl;
 
 }
