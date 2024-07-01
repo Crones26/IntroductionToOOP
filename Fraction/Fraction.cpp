@@ -27,7 +27,7 @@ void Fraction::set_denominator(int denominator)
     this->denominator = denominator;
 }
 
-//          Constructors
+//                 Constructors
 Fraction::Fraction()
 {
     integer = 0;
@@ -78,7 +78,7 @@ Fraction::~Fraction()
     cout << "destructor\t" << this << endl;
 }
 
-//              Operators
+//                  Operators
 Fraction& Fraction::operator=(const Fraction& other)
 {
     this->integer = other.integer;
@@ -95,9 +95,10 @@ Fraction& Fraction::operator/=(Fraction& other)
 {
     return *this = *this / other;
 }
-
 Fraction::operator int()
 {
+    //to_proper();
+    //return integer;
     return to_proper().integer;
 }
 Fraction::operator double()const
@@ -105,7 +106,7 @@ Fraction::operator double()const
     return integer + (double)numerator / (double)denominator;
 }
 
-//              Methods
+//                  Methods
 Fraction& Fraction::to_improper()
 {
     this->numerator += this->integer * this->denominator;
@@ -136,7 +137,7 @@ Fraction& Fraction::reduce()
         more = less;
         less = rest;
     } while (rest);
-    int GCD = more; // Greatest common divisor
+    int GCD = more; 
     numerator /= GCD;
     denominator /= GCD;
     return *this;
@@ -168,6 +169,24 @@ Fraction operator*(Fraction left, Fraction right)
 Fraction operator/(const Fraction& left, const Fraction& right)
 {
     return left * right.inverted();
+}
+Fraction operator+(Fraction left, Fraction right)
+{
+    left.to_improper();
+    right.to_improper();
+    Fraction result;
+    result.set_numerator(left.get_numerator() * right.get_denominator() + right.get_numerator() * left.get_denominator());
+    result.set_denominator(left.get_denominator() * right.get_denominator());
+    return result.to_proper();
+}
+Fraction operator-(Fraction& left, Fraction& right)
+{
+    Fraction result;
+    left.to_improper();
+    right.to_improper();
+    result.set_numerator((left.get_numerator() * right.get_denominator()) - (right.get_numerator() * left.get_denominator()));
+    result.set_denominator(left.get_denominator() * right.get_denominator());
+    return result.to_proper();
 }
 
 //              Comparison operators
@@ -235,13 +254,12 @@ std::istream& operator>>(std::istream& is, Fraction& obj)
     const char delimiters[] = " /()";
     for (char* pch = strtok(buffer, delimiters); pch; pch = strtok(NULL, delimiters))
         numbers[n++] = atoi(pch);
-
     switch (n)
     {
     case 1: obj = Fraction(numbers[0]); break;
     case 2: obj = Fraction(numbers[0], numbers[1]); break;
     case 3: obj = Fraction(numbers[0], numbers[1], numbers[2]); break;
     }
-
     return is;
+    
 }

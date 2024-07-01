@@ -1,4 +1,5 @@
 #pragma once
+#pragma once
 #define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
 using namespace std;
@@ -12,6 +13,8 @@ class Fraction;
 
 Fraction operator*(Fraction left, Fraction right);
 Fraction operator/(const Fraction& left, const Fraction& right);
+Fraction operator+(Fraction left, Fraction right);
+Fraction operator-(const Fraction& left, const Fraction& right);
 bool operator==(Fraction left, Fraction right);
 bool operator!=(const Fraction& left, const Fraction& right);
 bool operator>(Fraction left, Fraction right);
@@ -25,9 +28,9 @@ class Fraction
 {
 private:
 
-    int integer; 
+    int integer;
     int numerator;
-    int denominator; 
+    int denominator;
 
 public:
 
@@ -48,7 +51,7 @@ public:
     Fraction(const Fraction& other);
     ~Fraction();
 
-    //              Operators
+    //                  Operators
     Fraction& operator=(const Fraction& other);
     Fraction& operator*=(Fraction& other);
     Fraction& operator/=(Fraction& other);
@@ -56,7 +59,31 @@ public:
     explicit operator int();
     explicit operator double()const;
 
-    //              Methods
+    Fraction& operator++()
+    {
+        integer++;
+        return *this;
+    }
+    Fraction operator++(int)
+    {
+        Fraction old = *this;
+        integer++;
+        return old;
+    }
+    // Декременты
+    Fraction& operator--()
+    {
+        integer--;
+        return *this;
+    }
+    Fraction operator--(int)
+    {
+        Fraction old = *this;
+        integer--;
+        return old;
+    }
+
+    //                  Methods
     Fraction& to_improper();
     Fraction& to_proper();
     Fraction inverted() const;

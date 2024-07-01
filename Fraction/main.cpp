@@ -1,23 +1,19 @@
-﻿#include "Fraction.h"
+﻿#include"Fraction.h"
 #define delimiter "\n--------------------------------------------\n"
 
 //#define CONSTRUCTORS_CHECK
 //#define ARITHMETICAL_OPERATORS_CHECK
-//#define IOSTREAM_CHECK
-//#define CONVERSIONS_FROM_OTHER_TO_CLASS
-#define CONVERSIONS_HOME_WORK
-
+//#define INCREMENT_AND_DECREMENT_OPERATORS
 
 void main()
 {
     setlocale(LC_ALL, "");
 
 #ifdef CONSTRUCTORS_CHECK
-
-    Fraction A;  //default constuctor
+    Fraction A;		// Default constructor
     A.print();
 
-    Fraction B = 5; //single-arg constructor
+    Fraction B = 5; // Single-argument constructor
     B.print();
 
     Fraction C(1, 2);
@@ -25,51 +21,42 @@ void main()
 
     Fraction D(2, 3, 4);
     D.print();
-
 #endif // CONSTRUCTORS_CHECK
 
-#ifdef ARITHMETICAL_OPERATORS_CHECK
     Fraction A(2, 3, 4);
     A.print();
-
     Fraction B(3, 4, 5);
     B.print();
+    A.to_improper().print();
+    A.to_proper().print();
+
+#ifdef ARITHMETICAL_OPERATORS_CHECK
 
     Fraction C = A * B;
     C.print();
 
-    A *= B;
-    A.print();
-    A /= B;
-    A.print();
+    Fraction D = A / B;
+    D.print();
 
+    Fraction E = A + B;
+    E.print();
+
+    Fraction F = A - B;
+    F.print();
 #endif // ARITHMETICAL_OPERATORS_CHECK
 
-#ifdef IOSTREAM_CHECK
+#ifdef INCREMENT_AND_DECREMENT_OPERATORS
+    cout << "increment and decrement operators:" << endl;
+    a.to_proper().print();
+    ++a;
+    a.print();
+    a++;
+    a.print();
+    --a;
+    a.print();
+    a--;
+    a.print();
 
-    Fraction pupa;
-    cout << (Fraction(1, 2) <= Fraction(5, 10)) << endl;
-    cout << Fraction(1, 2) << endl;
-    cin >> pupa;
-    cout << pupa << endl;
-
-#endif // IOSTREAM_CHECK
-
-#ifdef CONVERSIONS_FROM_OTHER_TO_CLASS
-
-    Fraction A = (Fraction)5;
-    cout << A << endl;
-
-    cout << delimiter << endl;
-
-    Fraction B;
-    cout << delimiter << endl;
-    B = Fraction(8);
-    cout << delimiter << endl;
-    cout << B << endl;
-
-    cout << delimiter << endl;
-
-#endif // CONVERSIONS_FROM_OTHER_TO_CLASS
+#endif // INCREMENT_AND_DECREMENT_OPERATORS
 
 }
